@@ -2,7 +2,7 @@
 
 Welcome to the repository for my personal portfolio! This site acts as a showcase of my journey as a Computer Science student, highlighting my projects, technical skills, and academic progress.
 
-**Live Site:** [https://workwithabhinav07.github.io/](https://workwithabhinav07.github.io/)
+**Live Site:** [https://abhinavsharma07-eng.github.io/](https://abhinavsharma07-eng.github.io/)
 
 ---
 
@@ -48,7 +48,7 @@ I am a **Computer Science Engineer** currently pursuing my B.Tech. I am passiona
 
 ## 📬 Connect with Me
 
-* **GitHub:** [workwithabhinav07](https://github.com/workwithabhinav07)
+* **GitHub:** [abhinavsharma07-eng](https://github.com/abhinavsharma07-eng)
 * **LinkedIn:** [Abhinav Sharma](https://linkedin.com/in/abhinav-sharma-7b9433385)
 
 ---
