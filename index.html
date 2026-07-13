@@ -6,626 +6,194 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Abhinav |  CS Engineer Portfolio</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
   <meta name="author" content="Abhinav Sharma" />
-   <link rel="icon" type="image/svg" href="/pic/logo.svg">
+  <link rel="icon" type="image/svg" href="/assets/logo.svg">
   <meta name="description" content="Portfolio of Abhinav Sharma, a Computer Science Engineer student." />
   <meta name="keyword" content="Abhinav, Abhinav Sharma, Portfolio,  Computer Science Engineer, by github , resume " />
-
-  <style>
-    :root {
-      --bg-color: #e0e5ec;
-      --bg-card: #e0e5ec;
-      --text-main: #4a4a4a;
-      --text-secondary: #6c757d;
-      --accent-blue: #007bff;
-      --shadow-light: #ffffff;
-      --shadow-dark: #a3b1c6;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      overflow-x: hidden;
-    }
-
-
-    .status-bar {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      z-index: 1000;
-      background: var(--bg-color);
-      padding: 10px 20px;
-      border-radius: 50px;
-      box-shadow:
-        6px 6px 12px var(--shadow-dark),
-        -6px -6px 12px var(--shadow-light);
-
-      text-decoration: none;
-      color: var(--text-main);
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-
-    .status-bar:hover {
-      transform: scale(1.05);
-      color: var(--accent-blue);
-      box-shadow:
-        inset 4px 4px 8px var(--shadow-dark),
-        inset -4px -4px 8px var(--shadow-light);
-    }
-
-    .status-avatar {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-    .status-text {
-      font-weight: bold;
-      font-size: 0.9rem;
-    }
-
-
-    .menu-btn {
-      position: fixed;
-      top: 90px;
-      left: 20px;
-      z-index: 1001;
-      background: var(--bg-color);
-      border: none;
-      padding: 15px;
-      border-radius: 50%;
-      cursor: pointer;
-      box-shadow:
-        6px 6px 12px var(--shadow-dark),
-        -6px -6px 12px var(--shadow-light);
-      transition: transform 0.2s;
-      width: 50px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .menu-btn:active {
-      box-shadow:
-        inset 4px 4px 8px var(--shadow-dark),
-        inset -4px -4px 8px var(--shadow-light);
-    }
-
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: -300px;
-      width: 280px;
-      height: 100vh;
-      background: var(--bg-color);
-      box-shadow: 10px 0 20px rgba(0, 0, 0, 0.1);
-      transition: left 0.4s ease;
-      z-index: 999;
-      padding-top: 160px;
-      padding-left: 30px;
-    }
-
-    .sidebar.active {
-      left: 0;
-    }
-
-    .sidebar a {
-      display: block;
-      margin-bottom: 25px;
-      text-decoration: none;
-      color: var(--text-main);
-      font-size: 1.3rem;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-
-    .sidebar a:hover {
-      color: var(--accent-blue);
-    }
-
-
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 100px 20px;
-    }
-
-    .profile-pic {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--bg-color);
-      box-shadow:
-        10px 10px 20px var(--shadow-dark),
-        -10px -10px 20px var(--shadow-light);
-      margin-bottom: 25px;
-      animation: float 6s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateY(0px);
-      }
-
-      50% {
-        transform: translateY(-10px);
-      }
-
-      100% {
-        transform: translateY(0px);
-      }
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      color: var(--text-main);
-    }
-
-    .slogan {
-      font-size: 1.2rem;
-      color: var(--accent-blue);
-      margin-bottom: 20px;
-      font-family: "Courier New", monospace;
-      font-weight: bold;
-    }
-
-    .description {
-      max-width: 600px;
-      margin-bottom: 30px;
-      line-height: 1.6;
-      color: var(--text-secondary);
-      font-size: 1rem;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .social-icon {
-      width: 50px;
-      height: 50px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50%;
-      text-decoration: none;
-      color: var(--text-main);
-      background: var(--bg-color);
-      box-shadow:
-        6px 6px 12px var(--shadow-dark),
-        -6px -6px 12px var(--shadow-light);
-      transition:
-        transform 0.2s,
-        color 0.2s;
-    }
-
-    .social-icon:hover {
-      transform: translateY(-3px);
-      color: var(--accent-blue);
-    }
-
-    section {
-      padding: 100px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-      border-top: 1px solid rgba(0, 0, 0, 0.05);
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 60px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--text-main);
-      text-shadow:
-        2px 2px 4px var(--shadow-dark),
-        -2px -2px 4px var(--shadow-light);
-    }
-
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
-    }
-
-    .neumorphic-card {
-      background: var(--bg-card);
-      padding: 30px;
-      border-radius: 20px;
-      text-align: center;
-      box-shadow:
-        8px 8px 16px var(--shadow-dark),
-        -8px -8px 16px var(--shadow-light);
-      transition: transform 0.3s;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .neumorphic-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .card-title {
-      font-size: 1.4rem;
-      margin-bottom: 5px;
-      color: var(--text-main);
-    }
-
-    .card-subtitle {
-      font-size: 0.9rem;
-      color: var(--accent-blue);
-      margin-bottom: 15px;
-      font-weight: 600;
-    }
-
-    .card-desc {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      margin-bottom: 20px;
-      line-height: 1.5;
-    }
-
-
-    .skills-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .skill-badge {
-      background: var(--bg-color);
-      padding: 5px 12px;
-      border-radius: 10px;
-      font-size: 0.8rem;
-      font-weight: bold;
-      color: var(--text-secondary);
-      box-shadow:
-        inset 3px 3px 6px var(--shadow-dark),
-        inset -3px -3px 6px var(--shadow-light);
-    }
-
-    .cert-btn {
-      padding: 10px 25px;
-      border-radius: 25px;
-      text-decoration: none;
-      color: var(--accent-blue);
-      font-weight: bold;
-      background: var(--bg-color);
-      box-shadow:
-        5px 5px 10px var(--shadow-dark),
-        -5px -5px 10px var(--shadow-light);
-      transition: all 0.2s ease;
-      margin-top: auto;
-    }
-
-    .cert-btn:active {
-      box-shadow:
-        inset 3px 3px 6px var(--shadow-dark),
-        inset -3px -3px 6px var(--shadow-light);
-      transform: translateY(2px);
-    }
-
-    .member-avatar {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      margin-bottom: 15px;
-      background-color: #ddd;
-      object-fit: cover;
-    }
-
-    .hobby-icon {
-      font-size: 2.5rem;
-      color: var(--accent-blue);
-      margin-bottom: 15px;
-    }
-
-    .sub-heading {
-      width: 100%;
-      text-align: left;
-      margin-bottom: 30px;
-      font-size: 1.5rem;
-      color: var(--text-main);
-      padding-left: 10px;
-      border-left: 4px solid var(--accent-blue);
-    }
-
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2rem;
-      }
-
-      .status-bar {
-        top: 10px;
-        left: 10px;
-        width: auto;
-      }
-
-      .menu-btn {
-        top: 80px;
-        left: 10px;
-      }
-
-      .sidebar {
-        padding-top: 140px;
-      }
-    }
-  </style>
+   <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
+ 
+  
 </head>
 
 <body>
   <header>
-  <a href="/pic/resume.pdf" class="status-bar" download="Abhinav_Resume.pdf" title="Click to Download Resume">
-    <img src="/pic/pic.jpeg" alt="Icon" class="status-avatar" />
-    <span class="status-text">Abhinav_Sharma
-      <i class="fas fa-download" style="font-size: 0.7rem; margin-left: 5px"></i></span>
-  </a>
+    <nav class="navbar">
+      <a href="/assets/resume.pdf" class="brand" download="Abhinav_Resume.pdf" title="Click to Download Resume">
+        <img src="/assets/abhinav.jpeg" alt="Icon" />
+        <span>Abhinav_Sharma <i class="fas fa-download" style="font-size: 0.7rem"></i></span>
+      </a>
 
-  <button class="menu-btn" onclick="toggleMenu()">
-    <i class="fas fa-bars"></i>
-  </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#home" class="active">Home</a></li>
+        <li><a href="index.html#hobbies">Hobbies</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#skills">Skills & Certs</a></li>
+        <li><a href="index.html#education">Education</a></li>
+        <li><a href="team.html">My Team</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
 
-  <nav class="sidebar" id="sidebar">
-    <a href="#home" onclick="toggleMenu()">Home</a>
-
-    <a href="#hobbies" onclick="toggleMenu()">Hobbies</a>
-    <a href="#projects" onclick="toggleMenu()">Projects</a>
-    <a href="#skills" onclick="toggleMenu()">Skills & Certs</a>
-    <a href="#team" onclick="toggleMenu()">My Team</a>
-    <a href="#education" onclick="toggleMenu()">Education</a>
-  </nav>
+      <button class="nav-toggle" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </button>
+    </nav>
   </header>
+
   <main>
 
-  <section id="home" class="hero">
-    <img src="/pic/pic.jpeg" alt="Abhinav Passport Photo" class="profile-pic" />
-    <h1>Hi, I'm Abhinav</h1>
-    <div class="slogan">Computer Science Engineer | Automating the Future</div>
-    <p class="description">
-      I am a passionate Computer Science Engineer. I want to leverage my skills in DevOps and Cloud Computing to
-      build scalable and efficient systems. Let's connect and create something amazing together!
-    </p>
-    <div class="social-links">
-      <a href="https://linkedin.com/in/abhinav-sharma-7b9433385" class="social-icon" title="LinkedIn"><i
-          class="fab fa-linkedin-in"></i></a>
-      <a href="https://github.com/workwithabhinav07" class="social-icon" title="GitHub"><i
-          class="fab fa-github"></i></a>
-      <a href="https://leetcode.com/u/workwithabhinav07" class="social-icon" title="LeetCode"><i
-          class="fas fa-code"></i></a>
-      <a href="https://www.hackerrank.com/profile/workwithabhinav2" class="social-icon" title="HackerRank"><i
-          class="fab fa-hackerrank"></i></a>
-    </div>
-  </section>
+    <section id="home" class="hero">
+      <img src="/assets/abhinav.jpeg" alt="Abhinav Passport Photo" class="profile-pic" />
+      <h1>Hi, I'm Abhinav</h1>
+      <div class="slogan">Computer Science Engineer | Automating the Future</div>
+      <p class="description">
+        I am a passionate Computer Science Engineer. I want to leverage my skills in DevOps and Cloud Computing to
+        build scalable and efficient systems. Let's connect and create something amazing together!
+      </p>
+      <div class="social-links">
+        <a href="https://linkedin.com/in/abhinav-sharma-7b9433385" class="social-icon" title="LinkedIn"><i
+            class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/abhinavsharma07-eng" class="social-icon" title="GitHub"><i
+            class="fab fa-github"></i></a>
+        <a href="https://leetcode.com/u/abhinav_sharma_07/" class="social-icon" title="LeetCode"><i
+            class="fas fa-code"></i></a>
+        <a href="https://www.hackerrank.com/profile/_abhinav__07" class="social-icon" title="HackerRank"><i
+            class="fab fa-hackerrank"></i></a>
+      </div>
+    </section>
 
-  <section id="hobbies">
-    <h2 class="section-title">My Hobbies</h2>
-    <div class="grid-container">
-      <div class="neumorphic-card">
-        <i class="fas fa-camera hobby-icon"></i>
-        <h3 class="card-title">Photography</h3>
-        <p class="card-desc">
-          Capturing moments and landscapes during my travels.
-        </p>
-      </div>
-      <div class="neumorphic-card">
-        <i class="fas fa-gamepad hobby-icon"></i>
-        <h3 class="card-title">Gaming</h3>
-        <p class="card-desc">
-          Strategic games and FPS. Keeps the reflexes sharp.
-        </p>
-      </div>
-      <div class="neumorphic-card">
-        <i class="fas fa-book-open hobby-icon"></i>
-        <h3 class="card-title">Tech Reading</h3>
-        <p class="card-desc">
-          Reading blogs about new Cloud trends and System Design.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section id="projects">
-    <h2 class="section-title">My Projects</h2>
-    <div class="grid-container">
-      <div class="neumorphic-card">
-        <h3 class="card-title">Portfolio Website</h3>
-        <div class="card-subtitle">HTML5 & CSS3</div>
-        <p class="card-desc">
-          A personal portfolio website to showcase my skills, projects, and
-          experience.
-        </p>
-        <div class="social-links" style="margin-top: auto">
-          <a href="https://workwithabhinav07.github.io" class="social-icon"><i class="fab fa-github"></i></a>
+    <section id="hobbies">
+      <h2 class="section-title">My Hobbies</h2>
+      <div class="grid-container">
+        <div class="neumorphic-card">
+          <i class="fas fa-camera hobby-icon"></i>
+          <h3 class="card-title">Photography</h3>
+          <p class="card-desc">
+            Capturing moments and landscapes during my travels.
+          </p>
+        </div>
+        <div class="neumorphic-card">
+          <i class="fas fa-gamepad hobby-icon"></i>
+          <h3 class="card-title">Gaming</h3>
+          <p class="card-desc">
+            Strategic games and FPS. Keeps the reflexes sharp.
+          </p>
+        </div>
+        <div class="neumorphic-card">
+          <i class="fas fa-book-open hobby-icon"></i>
+          <h3 class="card-title">Tech Reading</h3>
+          <p class="card-desc">
+            Reading blogs about new Cloud trends and System Design.
+          </p>
         </div>
       </div>
-      <div class="neumorphic-card">
-        <h3 class="card-title">Tic-Tac-Toe Game</h3>
-        <div class="card-subtitle">C Language & makefile</div>
-        <p class="card-desc">
-          A simple Tic-Tac-Toe game built with C Language .
-        </p>
-        <div class="social-links" style="margin-top: auto">
-          <a href="https://github.com/workwithabhinav07/Tic-Tac-toe" class="social-icon"><i
-              class="fab fa-github"></i></a>
+    </section>
+
+    <section id="projects">
+      <h2 class="section-title">My Projects</h2>
+      <div class="grid-container">
+        <div class="neumorphic-card">
+          <h3 class="card-title">Portfolio Website</h3>
+          <div class="card-subtitle">HTML5 & CSS3</div>
+          <p class="card-desc">
+            A personal portfolio website to showcase my skills, projects, and
+            experience.
+          </p>
+          <div class="social-links" style="margin-top: auto">
+            <a href="https://abhinavsharma07-eng.github.io" class="social-icon"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+        <div class="neumorphic-card">
+          <h3 class="card-title">Tic-Tac-Toe Game</h3>
+          <div class="card-subtitle">C Language & makefile</div>
+          <p class="card-desc">
+            A simple Tic-Tac-Toe game built with C Language .
+          </p>
+          <div class="social-links" style="margin-top: auto">
+            <a href="https://github.com/abhinavsharma07-eng/Tic-Tac-toe" class="social-icon"><i
+                class="fab fa-github"></i></a>
+          </div>
+        </div>
+        <div class="neumorphic-card">
+          <h3 class="card-title">Tic-Tac-Toe Game</h3>
+          <div class="card-subtitle">Python & HTML</div>
+          <p class="card-desc">
+            A simple Tic-Tac-Toe game built with Python and HTML that connect
+            with AWS Lambda.
+          </p>
+          <div class="social-links" style="margin-top: auto">
+            <a href="https://github.com/abhinavsharma07-eng/Retro-TicTacToe" class="social-icon"><i
+                class="fab fa-github"></i></a>
+          </div>
         </div>
       </div>
-      <div class="neumorphic-card">
-        <h3 class="card-title">Tic-Tac-Toe Game</h3>
-        <div class="card-subtitle">Python & HTML</div>
-        <p class="card-desc">
-          A simple Tic-Tac-Toe game built with Python and HTML that connect
-          with AWS Lambda.
-        </p>
-        <div class="social-links" style="margin-top: auto">
-          <a href="https://github.com/workwithabhinav07/Retro-TicTacToe" class="social-icon"><i
-              class="fab fa-github"></i></a>
+    </section>
+
+    <section id="skills">
+      <h2 class="section-title">Skills & Certificates</h2>
+
+      <h3 class="sub-heading">Technical Arsenal</h3>
+      <div class="grid-container" style="margin-bottom: 60px">
+        <div class="neumorphic-card">
+          <h3 class="card-title">Monitoring & OS</h3>
+          <div class="skills-container" style="margin-top: 15px">
+            <span class="skill-badge"> Git</span>
+            <span class="skill-badge">GitHub</span>
+            <span class="skill-badge">Maven & Gradle</span>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="skills">
-    <h2 class="section-title">Skills & Certificates</h2>
-
-    <h3 class="sub-heading">Technical Arsenal</h3>
-    <div class="grid-container" style="margin-bottom: 60px">
-      <div class="neumorphic-card">
-        <h3 class="card-title">Monitoring & OS</h3>
-        <div class="skills-container" style="margin-top: 15px">
-          <span class="skill-badge"> Git</span>
-          <span class="skill-badge">GitHub</span>
-          <span class="skill-badge">AWS Bedrock</span>
+        <div class="neumorphic-card">
+          <h3 class="card-title">Languages</h3>
+          <div class="skills-container" style="margin-top: 15px">
+            <span class="skill-badge">Python</span>
+            <span class="skill-badge">C language</span>
+            <span class="skill-badge">HTML5</span>
+            <span class="skill-badge">CSS</span>
+            <span class="skill-badge">JAVA</span>
+          </div>
         </div>
-      </div>
-      <div class="neumorphic-card">
-        <h3 class="card-title">Languages</h3>
-        <div class="skills-container" style="margin-top: 15px">
-          <span class="skill-badge">Python</span>
-          <span class="skill-badge">C language</span>
-          <span class="skill-badge">HTML5</span>
-          <span class="skill-badge">CSS</span>
-          <span class="skill-badge">JAVA</span>
-        </div>
-      </div>
-
-    </div>
-    </div>
-
-    <h3 class="sub-heading">Certifications</h3>
-    <div class="grid-container">
-      <div class="neumorphic-card">
-        <h3 class="card-title"></h3>
-        <div class="card-subtitle">Issued by:</div>
-        <p class="card-desc"></p>
-        <a href="#" target="_blank" class="cert-btn">View Credential</a>
-      </div>
-      <div class="neumorphic-card">
-        <h3 class="card-title">National Building</h3>
-        <div class="card-subtitle">Issued by: Nation By Namo</div>
-        <p class="card-desc">
-          Certification in Building Nationalism and Civic Responsibility.
-        </p>
-        <a href="https://unstop.com/certificate-preview/16f7f2ae-d1de-424b-a2de-1609e60a21fe" target="_blank"
-          class="cert-btn">View Credential</a>
       </div>
 
-    </div>
-  </section>
+      <h3 class="sub-heading">Certifications</h3>
+      <div class="grid-container">
+        <div class="neumorphic-card">
+          <h3 class="card-title"></h3>
+          <div class="card-subtitle">Issued by:</div>
+          <p class="card-desc"></p>
+          <a href="#" target="_blank" class="cert-btn">View Credential</a>
+        </div>
+        <div class="neumorphic-card">
+          <h3 class="card-title">National Building</h3>
+          <div class="card-subtitle">Issued by: Nation By Namo</div>
+          <p class="card-desc">
+            Certification in Building Nationalism and Civic Responsibility.
+          </p>
+          <a href="https://unstop.com/certificate-preview/16f7f2ae-d1de-424b-a2de-1609e60a21fe" target="_blank"
+            class="cert-btn">View Credential</a>
+        </div>
+      </div>
+    </section>
 
-  <section id="team">
-    <h2 class="section-title">My Team</h2>
-    <div class="grid-container">
-      <div class="neumorphic-card">
-        <img src="/pic/pic.png" alt="Member" class="member-avatar" />
-        <h3 class="card-title">Divyanshu Kothari</h3>
-        <p class="card-subtitle">FULL STACK Developer</p>
-        <div class="skills-container">
-          <span class="skill-badge">React</span>
-          <span class="skill-badge">HTML5 & CSS3</span>
-          <span class="skill-badge">C++</span>
-          <span class="skill-badge">JavaScript</span>
-          <span class="skill-badge"> C language</span>
+    <section id="education">
+      <h2 class="section-title">Education</h2>
+      <div class="grid-container">
+        <div class="neumorphic-card" style="align-items: flex-start; text-align: left">
+          <h3 class="card-title">B.Tech in Computer Science</h3>
+          <p class="card-subtitle">KCC ITM | 2025 - 2029</p>
+          <p class="card-desc">
+            Pursuing Computing Science and Engineering. Graduate in 2029. 
+          </p>
         </div>
-        <div class="social-links">
-          <a href="https://linkedin.com/in/divyanshu-kothari-1b98b337a" class="social-icon"><i
-              class="fab fa-linkedin"></i></a>
-          <a href="https://github.com/kotharidivyanshu07-oss" class="social-icon"><i class="fab fa-github"></i></a>
+        <div class="neumorphic-card" style="align-items: flex-start; text-align: left">
+          <h3 class="card-title">High School (Science)</h3>
+          <p class="card-subtitle">Sarvodaya Bal Vidayalay | 2023 - 2025</p>
+          <p class="card-desc">Major in Physics, Chemistry, and Mathematics.</p>
         </div>
       </div>
-      <div class="neumorphic-card">
-        <img src="/pic/sonu.png" alt="Member" class="member-avatar" />
-        <h3 class="card-title">Sonu Kumar Sharma</h3>
-        <p class="card-subtitle">cybersecurity</p>
-        <div class="skills-container">
-          <span class="skill-badge">Node.js</span>
-          <span class="skill-badge">HTML5 & CSS3</span>
-          <span class="skill-badge">JavaScript</span>
-          <span class="skill-badge"> C language</span>
-        </div>
-        <div class="social-links">
-          <a href="https://linkedin.com/in/sonu-sharma-8b150a231" class="social-icon"><i
-              class="fab fa-linkedin"></i></a>
-          <a href="https://github.com/sonuk663541" class="social-icon"><i class="fab fa-github"></i></a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="education">
-    <h2 class="section-title">Education</h2>
-    <div class="grid-container">
-      <div class="neumorphic-card" style="align-items: flex-start; text-align: left">
-        <h3 class="card-title">B.Tech in Computer Science</h3>
-        <p class="card-subtitle">KCC ITM | 2025 - 2029</p>
-        <p class="card-desc">
-          Specialized in Cloud Computing and Network Security. Graduated with
-          First Class Distinction.
-        </p>
-      </div>
-      <div class="neumorphic-card" style="align-items: flex-start; text-align: left">
-        <h3 class="card-title">High School (Science)</h3>
-        <p class="card-subtitle">Sarvodaya Bal Vidayalay | 2023 - 2025</p>
-        <p class="card-desc">Major in Physics, Chemistry, and Mathematics.</p>
-      </div>
-    </div>
-  </section>
+    </section>
   </main>
 
-  <script>
-    function toggleMenu() {
-      const sidebar = document.getElementById("sidebar");
-      const icon = document.querySelector(".menu-btn i");
-      sidebar.classList.toggle("active");
-      if (sidebar.classList.contains("active")) {
-        icon.classList.remove("fa-bars");
-        icon.classList.add("fa-times");
-      } else {
-        icon.classList.remove("fa-times");
-        icon.classList.add("fa-bars");
-      }
-    }
-
-    document.querySelectorAll(".sidebar a").forEach((link) => {
-      link.addEventListener("click", () => {
-        const sidebar = document.getElementById("sidebar");
-        const icon = document.querySelector(".menu-btn i");
-        if (sidebar.classList.contains("active")) {
-          sidebar.classList.remove("active");
-          icon.classList.remove("fa-times");
-          icon.classList.add("fa-bars");
-        }
-      });
-    });
-  </script>
+  <script src="js/main.js"></script>
 </body>
 
 </html>

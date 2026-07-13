@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Team | Abhinav Sharma</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <meta name="author" content="Abhinav Sharma" />
+  <link rel="icon" type="image/svg" href="/assets/logo.svg">
+  <meta name="description" content="Meet the team behind Abhinav Sharma's projects." />
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="/assets/resume.pdf" class="brand" download="Abhinav_Resume.pdf" title="Click to Download Resume">
+        <img src="/assets/abhinav.jpeg" alt="Icon" />
+        <span>Abhinav_Sharma <i class="fas fa-download" style="font-size: 0.7rem"></i></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#hobbies">Hobbies</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#skills">Skills & Certs</a></li>
+        <li><a href="index.html#education">Education</a></li>
+        <li><a href="team.html" class="active">My Team</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <button class="nav-toggle" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="team" style="padding-top: 140px">
+      <h2 class="section-title">My Team</h2>
+      <p class="description" style="max-width: 800px; margin: -30px auto 60px; text-align: center">
+        The people I build and learn with. We team up on projects, review each other's code, and push each other
+        to try new stacks.
+      </p>
+
+      <div class="grid-container">
+        <div class="neumorphic-card team-card">
+          <img src="/assets/abhinav.jpeg" alt="Divyanshu Kothari" class="member-avatar" />
+          <h3 class="card-title">Divyanshu Kothari</h3>
+          <p class="card-subtitle">Full Stack Developer</p>
+          <p class="card-desc">
+            Divyanshu handles both ends of our projects — building responsive React front-ends and wiring them
+            up to solid back-end logic in C++ and JavaScript. He's the one who usually spots the edge cases the
+            rest of us miss, and he's big on writing code that's easy for the team to pick up later.
+          </p>
+          <div class="skills-container">
+            <span class="skill-badge">React</span>
+            <span class="skill-badge">HTML5 & CSS3</span>
+            <span class="skill-badge">C++</span>
+            <span class="skill-badge">Python</span>
+            <span class="skill-badge">C language</span>
+          </div>
+          <div class="social-links">
+            <a href="https://linkedin.com/in/divyanshu-kothari-1b98b337a" class="social-icon"><i
+                class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/kotharidivyanshu07-oss" class="social-icon"><i
+                class="fab fa-github"></i></a>
+          </div>
+        </div>
+
+        <div class="neumorphic-card team-card">
+          <img src="/assets/sonu.png" alt="Sonu Kumar Sharma" class="member-avatar" />
+          <h3 class="card-title">Sonu Kumar Sharma</h3>
+          <p class="card-subtitle">Cybersecurity</p>
+          <p class="card-desc">
+            Sonu is our security-minded teammate — he thinks in terms of what could go wrong before it does,
+            reviewing our projects for vulnerabilities and keeping our deployments locked down. He also builds
+            Node.js services and pitches in on front-end work when a project needs it.
+          </p>
+          <div class="skills-container">
+            <span class="skill-badge">Node.js</span>
+            <span class="skill-badge">HTML5 & CSS3</span>
+            <span class="skill-badge">JavaScript</span>
+            <span class="skill-badge">C language</span>
+          </div>
+          <div class="social-links">
+            <a href="https://linkedin.com/in/sonu-sharma-8b150a231" class="social-icon"><i
+                class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/CodeWithSharma-Ji" class="social-icon"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>
