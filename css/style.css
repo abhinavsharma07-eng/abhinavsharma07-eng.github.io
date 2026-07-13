@@ -23,8 +23,7 @@ body {
 }
 .modal-download-btn {
   transition: transform 0.2s, box-shadow 0.2s;
-  padding: 16px 34px;
-  gap: 10px;
+  
 }
 
 .modal-download-btn:hover {
