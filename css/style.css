@@ -21,6 +21,18 @@ body {
   color: var(--text-main);
   overflow-x: hidden;
 }
+.modal-download-btn {
+  transition: transform 0.2s, box-shadow 0.2s;
+  padding: 16px 34px;
+  gap: 10px;
+}
+
+.modal-download-btn:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    7px 7px 14px var(--shadow-dark),
+    -7px -7px 14px var(--shadow-light);
+}
 
 
 .navbar {
