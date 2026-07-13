@@ -22,8 +22,21 @@ body {
   overflow-x: hidden;
 }
 .modal-download-btn {
+  padding: 2px 16px; 
+  gap: 8px;
   transition: transform 0.2s, box-shadow 0.2s;
-  
+  border-radius: 25px;
+}
+.navbar .brand {
+  /* ... keep your existing properties like display: flex; ... */
+  transition: transform 0.2s, box-shadow 0.2s; /*[cite: 3] */
+  padding: 8px 15px; 
+  border-radius: 30px;
+}
+
+.navbar .brand:hover {
+  transform: translateY(-3px); /*[cite: 3] */
+  box-shadow: 7px 7px 14px var(--shadow-dark), -7px -7px 14px var(--shadow-light); /*[cite: 3] */
 }
 
 .modal-download-btn:hover {
@@ -111,7 +124,7 @@ body {
     background: var(--bg-color);
     flex-direction: column;
     align-items: flex-start;
-    gap: 0;
+    gap: 15px;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
@@ -126,6 +139,7 @@ body {
     padding: 15px 30px;
     width: 100%;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
+    gap:15px;
   }
 }
 
@@ -142,6 +156,7 @@ main {
   align-items: center;
   text-align: center;
   padding: 100px 20px;
+border-radius: 50%;
 }
 
 .profile-pic {
