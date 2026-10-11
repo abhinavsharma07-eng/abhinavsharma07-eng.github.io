@@ -7,7 +7,23 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#ffffff" id="meta-theme-color" />
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('portfolio-theme');
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = saved ? saved : (prefersDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+          var meta = document.getElementById('meta-theme-color');
+          if (meta) {
+            meta.setAttribute('content', theme === 'dark' ? '#090d16' : '#ffffff');
+          }
+        } catch (e) {}
+      })();
+    </script>
     <title>Abhinav Sharma — CSE Portfolio</title>
     <meta name="description" content="Personal developer portfolio of Abhinav Sharma — B.Tech CSE student at KCC ITM. Showcasing projects in C, Python, Java, and Web Development." />
     <meta name="keywords" content="Abhinav Sharma, developer, portfolio, CSE, B.Tech, KCC ITM, C, Python, Java, React" />

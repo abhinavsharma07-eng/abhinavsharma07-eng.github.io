@@ -26,21 +26,21 @@ const PROJECTS = [
         description:
             'A logic-based game demonstrating pointer usage, memory management, and game-loop design in C.',
         tags: ['C', 'Pointers', 'Logic'],
-        link: 'https://github.com/abhinavsharma07-eng/Tic-Tac-toe',
+        link: 'https://github.com/abhinavsharma07-eng/Tic-Tak-toe',
     },
     {
         title: 'Interactive Game (Python & Web)',
         description:
             'A web-integrated Tic-Tac-Toe built with Python and HTML, bridging backend logic with a browser UI.',
         tags: ['Python', 'HTML5', 'CSS3'],
-        link: 'https://github.com/abhinavsharma07-eng/',
+        link: 'https://github.com/abhinavsharma07-eng/Retro-TicTacToe',
     },
     {
         title: 'Portfolio Website',
         description:
             'My personal developer portfolio built from scratch with React + Vite — showcasing projects, live coding stats, and skills.',
         tags: ['React', 'Vite', 'CSS3', 'GitHub Pages'],
-        link: 'https://abhinavsharma07-eng.github.io/',
+        link: 'https://github.com/abhinavsharma07-eng/abhinavsharma07-eng.github.io',
     },
 ]
 
@@ -77,6 +77,26 @@ const HackerrankIcon = () => (
     </svg>
 )
 
+const SunIcon = () => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="17" height="17" aria-hidden="true">
+        <circle cx="12" cy="12" r="5"/>
+        <line x1="12" y1="1" x2="12" y2="3"/>
+        <line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/>
+        <line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+)
+
+const MoonIcon = () => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="17" height="17" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>
+    </svg>
+)
+
 /* ─── Intersection-observer reveal hook ───────────────────── */
 function useReveal() {
     const ref = useRef(null)
@@ -99,7 +119,7 @@ function useReveal() {
 }
 
 /* ─── Navbar ──────────────────────────────────────────────── */
-function Navbar({active, onNav}) {
+function Navbar({active, onNav, darkMode, onToggleDark}) {
     const [menuOpen, setMenuOpen] = useState(false)
     const [scrolled, setScrolled] = useState(false)
 
@@ -109,68 +129,145 @@ function Navbar({active, onNav}) {
         return () => window.removeEventListener('scroll', onScroll)
     }, [])
 
+    // Close mobile menu on Escape key
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape') setMenuOpen(false)
+        }
+        window.addEventListener('keydown', handleKeyDown)
+        return () => window.removeEventListener('keydown', handleKeyDown)
+    }, [])
+
+    // Lock body scroll when mobile menu is open
+    useEffect(() => {
+        if (menuOpen) {
+            document.body.style.overflow = 'hidden'
+        } else {
+            document.body.style.overflow = ''
+        }
+        return () => {
+            document.body.style.overflow = ''
+        }
+    }, [menuOpen])
+
     return (
-        <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
-            {/* Brand with interactive professional hover effect */}
-            <a className="navbar-brand" href="#about" onClick={() => {
-                onNav('about');
-                setMenuOpen(false)
-            }}>
-                <div className="brand-badge-wrap">
-                    <span className="brand-badge">AS</span>
-                    <span className="brand-badge-glow"/>
-                </div>
-                <div className="brand-details">
-          <span className="brand-text">
-            <span className="brand-first">Abhinav</span>
-            <span className="brand-last">Sharma</span>
-          </span>
-                    <span className="brand-tagline">Software &bull; CSE</span>
-                </div>
-            </a>
-
-            <button
-                className={`hamburger ${menuOpen ? 'open' : ''}`}
-                aria-label="Toggle menu"
-                onClick={() => setMenuOpen(o => !o)}
-            >
-                <span/><span/><span/>
-            </button>
-
-            <nav className={`nav-links ${menuOpen ? 'open' : ''}`}>
-                {NAV_LINKS.map(s => (
-                    <a
-                        key={s}
-                        href={`#${s.toLowerCase()}`}
-                        className={active === s.toLowerCase() ? 'active' : ''}
-                        onClick={() => {
-                            onNav(s.toLowerCase());
-                            setMenuOpen(false)
-                        }}
-                    >
-                        {s}
-                    </a>
-                ))}
-                <a className="nav-cta" href="mailto:abhinav.query07@gmail.com" onClick={() => setMenuOpen(false)}>
-                    Hire Me
+        <>
+            <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
+                {/* Brand with interactive professional hover effect */}
+                <a className="navbar-brand" href="#about" onClick={() => {
+                    onNav('about');
+                    setMenuOpen(false)
+                }}>
+                    <div className="brand-badge-wrap">
+                        <span className="brand-badge">AS</span>
+                        <span className="brand-badge-glow"/>
+                    </div>
+                    <div className="brand-details">
+                        <span className="brand-text">
+                            <span className="brand-first">Abhinav</span>
+                            <span className="brand-last">Sharma</span>
+                        </span>
+                        <span className="brand-tagline">Software &bull; CSE</span>
+                    </div>
                 </a>
-            </nav>
-        </header>
+
+                {/* Right side: mobile theme toggle + mobile Hire Me + hamburger */}
+                <div className="navbar-right">
+                    <button
+                        className="theme-toggle-btn theme-toggle-btn--mobile"
+                        onClick={onToggleDark}
+                        aria-label={darkMode ? 'Switch to light theme' : 'Switch to dark theme'}
+                        title={darkMode ? 'Light mode' : 'Dark mode'}
+                    >
+                        {darkMode ? <SunIcon/> : <MoonIcon/>}
+                    </button>
+                    <a className="nav-cta nav-cta--mobile" href="mailto:abhinav.query07@gmail.com">
+                        Hire Me
+                    </a>
+                    <button
+                        className={`hamburger ${menuOpen ? 'open' : ''}`}
+                        aria-label="Toggle menu"
+                        aria-expanded={menuOpen}
+                        onClick={() => setMenuOpen(o => !o)}
+                    >
+                        <span/><span/><span/>
+                    </button>
+                </div>
+
+                <nav className={`nav-links ${menuOpen ? 'open' : ''}`}>
+                    {NAV_LINKS.map(s => (
+                        <a
+                            key={s}
+                            href={`#${s.toLowerCase()}`}
+                            className={active === s.toLowerCase() ? 'active' : ''}
+                            onClick={() => {
+                                onNav(s.toLowerCase());
+                                setMenuOpen(false)
+                            }}
+                        >
+                            {s}
+                        </a>
+                    ))}
+
+                    {/* Mobile drawer appearance toggle row */}
+                    <div className="mobile-nav-theme-row">
+                        <span className="mobile-nav-theme-label">Appearance</span>
+                        <button
+                            className="mobile-theme-toggle-btn"
+                            onClick={onToggleDark}
+                            aria-label={darkMode ? 'Switch to light theme' : 'Switch to dark theme'}
+                        >
+                            {darkMode ? (
+                                <>
+                                    <SunIcon/> <span>Light Mode</span>
+                                </>
+                            ) : (
+                                <>
+                                    <MoonIcon/> <span>Dark Mode</span>
+                                </>
+                            )}
+                        </button>
+                    </div>
+
+                    <button
+                        className="theme-toggle-btn theme-toggle-btn--desktop"
+                        onClick={onToggleDark}
+                        aria-label={darkMode ? 'Switch to light theme' : 'Switch to dark theme'}
+                        title={darkMode ? 'Light mode' : 'Dark mode'}
+                    >
+                        {darkMode ? <SunIcon/> : <MoonIcon/>}
+                    </button>
+
+                    {/* Desktop-only Hire Me inside nav */}
+                    <a className="nav-cta nav-cta--desktop" href="mailto:abhinav.query07@gmail.com" onClick={() => setMenuOpen(false)}>
+                        Hire Me
+                    </a>
+                </nav>
+            </header>
+
+            {/* Backdrop overlay for mobile menu drawer */}
+            <div
+                className={`nav-backdrop ${menuOpen ? 'open' : ''}`}
+                onClick={() => setMenuOpen(false)}
+                aria-hidden="true"
+            />
+        </>
     )
 }
 
 /* ─── Hero ────────────────────────────────────────────────── */
 const SOCIAL_LINKS = [
-    {href: 'https://github.com/abhinavsharma07-eng', label: 'GitHub', Icon: GithubIcon, color: '#24292e'},
-    {href: 'https://www.linkedin.com/in/abhinavsharma07-eng/', label: 'LinkedIn', Icon: LinkedinIcon, color: '#0a66c2'},
-    {href: `https://leetcode.com/u/${LEETCODE_USERNAME}`, label: 'LeetCode', Icon: LeetcodeIcon, color: '#ffa116'},
+    {id: 'github', href: 'https://github.com/abhinavsharma07-eng', label: 'GitHub', Icon: GithubIcon, color: '#24292e'},
+    {id: 'linkedin', href: 'https://www.linkedin.com/in/abhinavsharma07-eng/', label: 'LinkedIn', Icon: LinkedinIcon, color: '#0a66c2'},
+    {id: 'leetcode', href: `https://leetcode.com/u/${LEETCODE_USERNAME}`, label: 'LeetCode', Icon: LeetcodeIcon, color: '#ffa116'},
     {
+        id: 'hackerrank',
         href: `https://www.hackerrank.com/profile/${HACKERRANK_USERNAME}`,
         label: 'HackerRank',
         Icon: HackerrankIcon,
         color: '#00ea64'
     },
-    {href: 'mailto:abhinav.query07@gmail.com', label: 'Email', Icon: EmailIcon, color: '#ea4335'},
+    {id: 'email', href: 'mailto:abhinav.query07@gmail.com', label: 'Email', Icon: EmailIcon, color: '#ea4335'},
 ]
 
 function Hero() {
@@ -202,14 +299,14 @@ function Hero() {
                 </div>
 
                 <div className="hero-socials">
-                    {SOCIAL_LINKS.map(({href, label, Icon, color}) => (
+                    {SOCIAL_LINKS.map(({id, href, label, Icon, color}) => (
                         <a
                             key={label}
                             href={href}
                             target={href.startsWith('mailto') ? undefined : '_blank'}
                             rel="noreferrer"
                             aria-label={label}
-                            className="social-pill"
+                            className={`social-pill social-pill--${id}`}
                             style={{'--pill-color': color}}
                         >
                             <Icon/>
@@ -227,7 +324,12 @@ function Hero() {
                             src="https://avatars.githubusercontent.com/abhinavsharma07-eng"
                             alt="Abhinav Sharma"
                             className="avatar-img"
+                            onError={e => {
+                                e.currentTarget.style.display = 'none'
+                                e.currentTarget.nextElementSibling.style.display = 'flex'
+                            }}
                         />
+                        <span className="avatar-initials" style={{display: 'none'}}>AS</span>
                     </div>
                 </div>
                 <div className="floating-badge fb-1">C</div>
@@ -264,16 +366,11 @@ function Skills() {
 
 
 function useLeetcodeStats(username) {
-    const [data, setData] = useState(null)
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(null)
-    const [ts, setTs] = useState(Date.now())
+    const [state, setState] = useState({data: null, loading: true, error: null})
+    const [ts, setTs] = useState(0)
 
     useEffect(() => {
         let active = true
-        setLoading(true)
-        setError(null)
-        setData(null)
 
         const endpoints = [
             `https://leetcode-stats-api.herokuapp.com/${username}`,
@@ -289,19 +386,22 @@ function useLeetcodeStats(username) {
                     const d = await res.json()
                     if (d && (d.totalSolved !== undefined || d.status === 'success')) {
                         if (active) {
-                            setData({
-                                totalSolved: d.totalSolved ?? (d.easySolved + d.mediumSolved + d.hardSolved) ?? 0,
-                                totalQuestions: d.totalQuestions ?? 0,
-                                easySolved: d.easySolved ?? 0,
-                                totalEasy: d.totalEasy ?? 0,
-                                mediumSolved: d.mediumSolved ?? 0,
-                                totalMedium: d.totalMedium ?? 0,
-                                hardSolved: d.hardSolved ?? 0,
-                                totalHard: d.totalHard ?? 0,
-                                acceptanceRate: d.acceptanceRate ? String(d.acceptanceRate) : '0',
-                                ranking: d.ranking ?? 0,
+                            setState({
+                                data: {
+                                    totalSolved: d.totalSolved ?? (d.easySolved + d.mediumSolved + d.hardSolved || 0),
+                                    totalQuestions: d.totalQuestions ?? 0,
+                                    easySolved: d.easySolved ?? 0,
+                                    totalEasy: d.totalEasy ?? 0,
+                                    mediumSolved: d.mediumSolved ?? 0,
+                                    totalMedium: d.totalMedium ?? 0,
+                                    hardSolved: d.hardSolved ?? 0,
+                                    totalHard: d.totalHard ?? 0,
+                                    acceptanceRate: d.acceptanceRate ? String(d.acceptanceRate) : '0',
+                                    ranking: d.ranking ?? 0,
+                                },
+                                loading: false,
+                                error: null,
                             })
-                            setLoading(false)
                             return
                         }
                     }
@@ -310,8 +410,7 @@ function useLeetcodeStats(username) {
                 }
             }
             if (active) {
-                setError(true)
-                setLoading(false)
+                setState({data: null, loading: false, error: true})
             }
         }
 
@@ -321,7 +420,12 @@ function useLeetcodeStats(username) {
         }
     }, [username, ts])
 
-    return {data, loading, error, refresh: () => setTs(Date.now())}
+    const refresh = () => {
+        setState({data: null, loading: true, error: null})
+        setTs(t => t + 1)
+    }
+
+    return {data: state.data, loading: state.loading, error: state.error, refresh}
 }
 
 function LeetCodeCard() {
@@ -471,12 +575,16 @@ function GitHubCard() {
                     </svg>
                 </a>
             </div>
-            <div className="gh-chart-wrap">
-                <img
-                    src="https://ghchart.rshah.org/abhinavsharma07-eng"
-                    alt="GitHub Contributions Chart"
-                    className="gh-chart-img"
-                />
+            <div className="gh-chart-container">
+                <div className="gh-chart-wrap">
+                    <img
+                        src="https://ghchart.rshah.org/abhinavsharma07-eng"
+                        alt="GitHub Contributions Chart"
+                        className="gh-chart-img"
+                        loading="lazy"
+                    />
+                </div>
+                <p className="gh-chart-hint">Scroll horizontally to view full year</p>
             </div>
         </div>
     )
@@ -693,6 +801,43 @@ function SectionHeader({label, title, sub}) {
 /* ─── App ─────────────────────────────────────────────────── */
 export default function App() {
     const [activeSection, setActiveSection] = useState('about')
+    const [darkMode, setDarkMode] = useState(() => {
+        if (typeof window === 'undefined') return false
+        try {
+            const saved = localStorage.getItem('portfolio-theme')
+            if (saved) return saved === 'dark'
+            return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        } catch {
+            return false
+        }
+    })
+
+    useEffect(() => {
+        const theme = darkMode ? 'dark' : 'light'
+        document.documentElement.setAttribute('data-theme', theme)
+        try {
+            localStorage.setItem('portfolio-theme', theme)
+        } catch (e) {
+            void e
+        }
+        const meta = document.getElementById('meta-theme-color')
+        if (meta) {
+            meta.setAttribute('content', darkMode ? '#090d16' : '#ffffff')
+        }
+    }, [darkMode])
+
+    useEffect(() => {
+        const mediaQuery = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)')
+        if (!mediaQuery) return
+        const handleChange = (e) => {
+            const saved = localStorage.getItem('portfolio-theme')
+            if (!saved) {
+                setDarkMode(e.matches)
+            }
+        }
+        mediaQuery.addEventListener?.('change', handleChange)
+        return () => mediaQuery.removeEventListener?.('change', handleChange)
+    }, [])
 
     useEffect(() => {
         const obs = new IntersectionObserver(
@@ -707,7 +852,7 @@ export default function App() {
 
     return (
         <>
-            <Navbar active={activeSection} onNav={setActiveSection}/>
+            <Navbar active={activeSection} onNav={setActiveSection} darkMode={darkMode} onToggleDark={() => setDarkMode(d => !d)}/>
             <main>
                 <Hero/>
                 <Skills/>
