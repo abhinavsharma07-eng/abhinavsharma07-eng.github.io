@@ -4,6 +4,7 @@ import './App.css'
 /* ─── Config ──────────────────────────────────────────────── */
 const LEETCODE_USERNAME = 'abhinav_sharma_07'
 const HACKERRANK_USERNAME = '_abhinav__07'
+const RESUME_URL = 'https://drive.google.com/file/d/19W_skDFlw9iOIxxESVtkoGipg5WIwDFp/view?usp=share_link'
 
 const NAV_LINKS = ['About', 'Skills', 'Coding', 'Projects', 'Education', 'Contact']
 
@@ -287,7 +288,12 @@ function Hero() {
 
                 <div className="hero-actions">
                     <a href="#projects" className="btn btn-primary">View Projects</a>
-                    <a href="/resume.pdf" download="Abhinav_Sharma_Resume.pdf" className="btn btn-resume">
+                    <a
+                        href={RESUME_URL}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="btn btn-resume"
+                    >
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" width="17"
                              height="17" aria-hidden="true">
                             <path d="M12 16V4m0 12-4-4m4 4 4-4"/>
