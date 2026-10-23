@@ -258,6 +258,10 @@ img, svg { display: block; }
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid transparent;
   transition: border-color .25s, box-shadow .25s, background .25s;
+  /* Prevent the bar itself from causing horizontal scroll */
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
 }
 .navbar--scrolled {
   border-bottom-color: var(--border);
@@ -512,6 +516,7 @@ img, svg { display: block; }
   display: flex;
   align-items: center;
   gap: .5rem;
+  flex-shrink: 0;
 }
 
 /* Mobile-only CTA — hidden on desktop */
@@ -526,14 +531,26 @@ img, svg { display: block; }
   .theme-toggle-btn--mobile { display: inline-flex; }
   .theme-toggle-btn--desktop { display: none !important; }
 
-  /* Show the mobile Hire Me pill next to hamburger */
-  .nav-cta--mobile {
-    display: inline-flex;
-    font-size: .8rem !important;
-    padding: .35rem .85rem !important;
-  }
+  /* Hide Hire Me button entirely on mobile */
+  .nav-cta--mobile { display: none !important; }
   /* Hide the one inside the dropdown */
   .nav-cta--desktop { display: none !important; }
+
+  /* Ensure brand can shrink so right controls stay on screen */
+  .navbar-brand {
+    min-width: 0;
+    flex-shrink: 1;
+    overflow: hidden;
+  }
+  .brand-details {
+    overflow: hidden;
+  }
+  .brand-text,
+  .brand-tagline {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 
   .nav-links {
     position: fixed;
@@ -836,7 +853,6 @@ img, svg { display: block; }
   border-radius: 50%;
   padding: 3px;
   background: conic-gradient(var(--accent), #7c3aed, #ec4899, var(--accent));
-  animation: spin 10s linear infinite;
   box-shadow: 0 0 0 6px var(--bg), 0 0 0 7px var(--border);
 }
 @keyframes spin { to { transform: rotate(360deg); } }
@@ -847,7 +863,6 @@ img, svg { display: block; }
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: spin 10s linear infinite reverse;
   overflow: hidden;
 }
 .avatar-img {
